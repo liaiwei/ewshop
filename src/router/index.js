@@ -14,27 +14,42 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    component: Home
+    component: Home,
+    meta:{
+      title:'图书兄弟首页'
+    }
   },
   {
     path: '/category',
     name: 'category',
-    component: Category
+    component: Category,
+    meta:{
+      title:'商品分类'
+    }
   },
   {
     path: '/shopcar',
     name: 'shopcar',
-    component: Shopcar
+    component: Shopcar,
+    meta:{
+      title:'购物车'
+    }
   },
   {
     path: '/detail',
     name: 'detail',
-    component: Detail
+    component: Detail,
+    meta:{
+      title:'商品详情'
+    }
   },
   {
     path: '/profile',
     name: 'profile',
-    component: Profile
+    component: Profile,
+    meta:{
+      title:'用户中心'
+    }
   },
 ]
 
@@ -43,4 +58,9 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach((to,from,next)=>{
+next();
+ document.title = to.meta.title;
+
+})
 export default router

@@ -1,14 +1,22 @@
 <template>
   <div class="home">
-    <h1>首页</h1>
+    <nav-bar>
+      <template v-slot:left></template>
+      <template v-slot:default>图书兄弟</template>
+      <template v-slot:right>图书兄弟</template>
+    </nav-bar>
   </div>
 </template>
 
 <script>
+import NavBar from "@/components/common/navbar/NavBar.vue";
 import { onMounted, ref } from 'vue';
 import { getHomeAllData } from '@/network/home';
 export default {
-  name: 'HomeView',
+  name: 'Home',
+  components:{
+    NavBar
+  },
   setup(){
     const banner = ref([]);
     onMounted(()=>{
