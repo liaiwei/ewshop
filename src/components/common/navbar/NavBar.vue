@@ -1,33 +1,35 @@
 <template>
   <div class="nav-bar">
-    <div class="left" @click="goBack"><slot name="left">
-      <img src="~assets/images/left-arrow.png" alt="">
-    </slot></div>
+    <div class="left" @click="goBack">
+      <slot name="left">
+        <img src="~assets/images/left-arrow.png" alt="" />
+      </slot>
+    </div>
     <div class="center"><slot></slot></div>
     <div class="right"><slot name="right"></slot></div>
   </div>
 </template>
 
 <script>
-import {useRouter} from "vue-router";
+import { useRouter } from "vue-router";
 
 export default {
-  name:"NavBar",
-  setup(){
+  name: "NavBar",
+  setup() {
     const router = useRouter();
-    const goBack = ()=>{
-      router.go(-1)
-    }
+    const goBack = () => {
+      router.go(-1);
+    };
 
-    return{
-      goBack
-    }
-  }
-}
+    return {
+      goBack,
+    };
+  },
+};
 </script>
 
 <style scoped lang="scss">
-.nav-bar{
+.nav-bar {
   background: var(--color-tint);
   color: #ffffff;
   position: fixed;
@@ -39,16 +41,17 @@ export default {
   line-height: 45px;
   text-align: center;
   display: flex;
-  box-shadow: 0 2px rgba(100,100,100,.1);
+  box-shadow: 0 2px rgba(100, 100, 100, 0.1);
 }
-.left,.right{
+.left,
+.right {
   width: 60px;
 }
-.left img{
+.left img {
   width: 45px;
   padding: 10px;
 }
-.center{
+.center {
   flex: 1;
 }
 </style>
