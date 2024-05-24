@@ -8,7 +8,7 @@
     </div>
     <recommend-view :recommends="recommends"></recommend-view>
     <tab-control :titles="['畅销','新书','精选']" @tabClick="tabClick"></tab-control>
-    <goods-list></goods-list>
+    <goods-list :goods="showGoods"></goods-list>
   </div>
 </template>
 
@@ -17,8 +17,8 @@ import NavBar from "@/components/common/navbar/NavBar.vue";
 import RecommendView from './ChildComps/RecommendView.vue'
 import TabControl from '@/components/content/tabControl/TabControl.vue'
 import GoodsList from './../../components/content/goods/GoodsList.vue'
-import { onMounted, ref } from 'vue';
-import { getHomeAllData } from '@/network/home';
+import { onMounted, ref,reactive,computed } from 'vue';
+import { getHomeAllData,getHomeGoods } from '@/network/home';
 export default {
   name: 'Home',
   components:{
@@ -29,18 +29,44 @@ export default {
   },
   setup(){
     const recommends = ref([]);
-    
+
+    const goods = reactive({
+      sales:{page:0,list:[]},
+      new:{page:0,list:[]},
+      recommend:{page:0,list:[]}
+    })
+
+    let currentType = ref('sales');
+
+    const showGoods = computed(()=>{
+      return goods[currentType.value].list;
+    })
     onMounted(()=>{
       getHomeAllData().then(res=>{
         recommends.value = res.goods.data;
+      });
+
+      getHomeGoods('sales').then(res=>{
+          goods.sales.list = res.goods.data;
       })
+      getHomeGoods('recommend').then(res=>{
+        goods.recommend.list = res.goods.data;
+      })
+      getHomeGoods('new').then(res=>{
+        goods.new.list = res.goods.data;
+      })
+
+
     })
     const tabClick = (index)=>{
 
     }
 
-    return{
-      recommends
+    return{ 
+      recommends,
+      goods,
+      tabClick,
+      showGoods
     }
   }
   
