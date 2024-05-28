@@ -22,9 +22,9 @@
       <div>分类</div>
     </router-link>
     <router-link to="/shopcar" class="tab-bar-item">
-      <div class="icon">
+      <van-badge :content="20" max="9">
         <i class="iconfont icon-gouwuche"></i>
-      </div>
+      </van-badge>
       <div>购物车</div>
     </router-link>
     <router-link to="/profile" class="tab-bar-item">
@@ -70,3 +70,5 @@
   }
 }
 </style>
+<script setup>
+</script>

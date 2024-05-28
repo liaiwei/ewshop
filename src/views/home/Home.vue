@@ -7,9 +7,10 @@
     <div class="wrapper">
       <div class="content">
         <div ref="banRef">
-          <div class="banner">
-            <img src="~assets/images/1.jpg" alt="">
-          </div>
+          <home-swiper :banners="banners"></home-swiper>
+<!--          <div class="banner">-->
+<!--            <img src="~assets/images/1.jpg" alt="">-->
+<!--          </div>-->
           <recommend-view :recommends="recommends"></recommend-view>
         </div>
 
@@ -31,6 +32,7 @@ import { getHomeAllData,getHomeGoods } from '@/network/home';
 import BScroll from '@better-scroll/core'
 import PullUp from '@better-scroll/pull-up'
 import BackTop from '@/components/common/backTop/BackTop.vue'
+import HomeSwiper from "@/views/home/ChildComps/HomeSwiper.vue";
 export default {
   name: 'Home',
   components:{
@@ -38,7 +40,8 @@ export default {
     RecommendView,
     TabControl,
     GoodsList,
-    BackTop
+    BackTop,
+    HomeSwiper
   },
   setup(){
     let isTabFixed = ref(false)
@@ -58,11 +61,12 @@ export default {
     })
 
     let bScroll = reactive({})
-
+    let banners = ref([])
     BScroll.use(PullUp)
     onMounted(()=>{
       getHomeAllData().then(res=>{
         recommends.value = res.goods.data;
+        banners.value = res.slides;
       });
 
       getHomeGoods('sales').then(res=>{
@@ -129,7 +133,8 @@ export default {
       isTabFixed,
       banRef,
       isShowBack,
-      bTop
+      bTop,
+      banners
     }
   }
   

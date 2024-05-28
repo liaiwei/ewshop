@@ -3,7 +3,29 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import 'vant/lib/index.css'
-import {Swipe, SwipeItem} from 'vant'
+import {
+        Swipe,
+        SwipeItem,
+        Lazyload,
+        Badge,
+        Sidebar,
+        SidebarItem,
+        Collapse,
+        CollapseItem,
+        Tab,
+        Tabs,
+        Card
+
+} from 'vant'
 createApp(App)
-    .use(Swipe).use(SwipeItem)
+    .use(Swipe)
+    .use(SwipeItem)
+    .use(Lazyload, {loading:require('./assets/images/1.jpg')})
+    .use(Badge)
+    .use(Sidebar)
+    .use(SidebarItem)
+    .use(Collapse)
+    .use(CollapseItem)
+    .use(Tab)
+    .use(Tabs)
     .use(store).use(router).mount('#app')
