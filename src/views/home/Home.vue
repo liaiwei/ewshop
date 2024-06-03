@@ -34,7 +34,7 @@ import PullUp from '@better-scroll/pull-up'
 import BackTop from '@/components/common/backTop/BackTop.vue'
 import HomeSwiper from "@/views/home/ChildComps/HomeSwiper.vue";
 export default {
-  name: 'Home',
+  name: 'home',
   components:{
     NavBar,
     RecommendView,
@@ -60,8 +60,9 @@ export default {
       return goods[currentType.value].list;
     })
 
-    let bScroll = reactive({})
+
     let banners = ref([])
+    let bScroll = reactive({})
     BScroll.use(PullUp)
     onMounted(()=>{
       getHomeAllData().then(res=>{
@@ -97,7 +98,7 @@ export default {
         const page = goods[currentType.value].page + 1;
         getHomeGoods(currentType.value,page).then(res=>{
           goods[currentType.value].list.push(...res.goods.data);
-          goods[currentType.value].page += 1;
+          goods[currentType.value].page = page;
           bScroll.finishPullUp()
           console.log('当前类型'+ currentType.value,'页'+ page)
           bScroll.refresh();

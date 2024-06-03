@@ -1,9 +1,11 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 const Home = ()=>import('@/views/home/Home.vue')
 const Category = ()=>import('@/views/category/Category.vue')
 const Detail = ()=>import('@/views/detail/Detail.vue')
 const Profile = ()=>import('@/views/profile/Profile.vue')
 const Shopcar = ()=>import('@/views/shopcar/ShopCar.vue')
+const Register = ()=>import('@/views/profile/Register.vue')
+const Login = ()=>import('@/views/profile/Login.vue')
 
 const routes = [
   {
@@ -51,10 +53,26 @@ const routes = [
       title:'用户中心'
     }
   },
+  {
+    path: '/register',
+    name: 'register',
+    component: Register,
+    meta:{
+      title:'用户注册'
+    }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login,
+    meta:{
+      title:'登录'
+    }
+  },
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes
 })
 

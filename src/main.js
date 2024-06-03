@@ -14,7 +14,12 @@ import {
         CollapseItem,
         Tab,
         Tabs,
-        Card
+        Card,
+        Image as VanImage,
+        Tag,
+        Button,
+        Form,
+        Field
 
 } from 'vant'
 createApp(App)
@@ -28,4 +33,11 @@ createApp(App)
     .use(CollapseItem)
     .use(Tab)
     .use(Tabs)
+    .use(Card)
+    .use(VanImage)
+    .use(Tag)
+    .use(Button)
+    .use(Form)
+    .use(Field)
+
     .use(store).use(router).mount('#app')

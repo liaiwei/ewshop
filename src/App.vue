@@ -22,7 +22,7 @@
       <div>分类</div>
     </router-link>
     <router-link to="/shopcar" class="tab-bar-item">
-      <van-badge :content="20" max="9">
+      <van-badge :content="20" max="9" style="margin-top: 9px">
         <i class="iconfont icon-gouwuche"></i>
       </van-badge>
       <div>购物车</div>
